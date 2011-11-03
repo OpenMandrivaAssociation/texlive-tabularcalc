@@ -1,0 +1,68 @@
+# revision 15878
+# category Package
+# catalog-ctan /macros/latex/contrib/tabularcalc
+# catalog-date 2009-04-22 00:12:47 +0200
+# catalog-license lppl
+# catalog-version 0.2
+Name:		texlive-tabularcalc
+Version:	0.2
+Release:	1
+Summary:	Calculate formulas in a tabular environment
+Group:		Publishing
+URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/tabularcalc
+License:	LPPL
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/tabularcalc.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/tabularcalc.doc.tar.xz
+BuildArch:	noarch
+BuildRequires:	texlive-tlpkg
+Requires(post):	texlive-tlpkg
+Conflicts:	texlive-texmf <= 20110705-3
+Conflicts:	texlive-doc <= 20110705-3
+
+%description
+Given a list of numbers and one (or more) formulas, the package
+offers an easy syntax to build a table of values, i.e., a
+tabular in which the first row contains the list of numbers,
+and the other rows contain the calculated values of the
+formulas for each number of the list. The table may be built
+either horizontally or vertically and is fully customizable.
+
+%pre
+    %_texmf_mktexlsr_pre
+
+%post
+    %_texmf_mktexlsr_post
+
+%preun
+    if [ $1 -eq 0 ]; then
+	%_texmf_mktexlsr_pre
+    fi
+
+%postun
+    if [ $1 -eq 0 ]; then
+	%_texmf_mktexlsr_post
+    fi
+
+#-----------------------------------------------------------------------
+%files
+%{_texmfdistdir}/tex/latex/tabularcalc/tabularcalc.sty
+%doc %{_texmfdistdir}/doc/latex/tabularcalc/README
+%doc %{_texmfdistdir}/doc/latex/tabularcalc/tabularcalc_doc_en.pdf
+%doc %{_texmfdistdir}/doc/latex/tabularcalc/tabularcalc_doc_en.tex
+%doc %{_texmfdistdir}/doc/latex/tabularcalc/tabularcalc_doc_fr.pdf
+%doc %{_texmfdistdir}/doc/latex/tabularcalc/tabularcalc_doc_fr.tex
+%doc %{_texmfdistdir}/doc/latex/tabularcalc/tabularcalc_doc_vn.pdf
+%doc %{_texmfdistdir}/doc/latex/tabularcalc/tabularcalc_doc_vn.tex
+%doc %{_tlpkgobjdir}/*.tlpobj
+
+#-----------------------------------------------------------------------
+%prep
+%setup -c -a0 -a1
+
+%build
+
+%install
+mkdir -p %{buildroot}%{_texmfdistdir}
+cp -fpar tex doc %{buildroot}%{_texmfdistdir}
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
