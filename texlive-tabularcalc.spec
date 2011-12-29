@@ -17,8 +17,6 @@ BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
 Requires(post):	texlive-kpathsea
-Conflicts:	texlive-texmf <= 20110705-3
-Conflicts:	texlive-doc <= 20110705-3
 
 %description
 Given a list of numbers and one (or more) formulas, the package
@@ -28,20 +26,12 @@ and the other rows contain the calculated values of the
 formulas for each number of the list. The table may be built
 either horizontally or vertically and is fully customizable.
 
-%pre
-    %_texmf_mktexlsr_pre
-
 %post
-    %_texmf_mktexlsr_post
-
-%preun
-    if [ $1 -eq 0 ]; then
-	%_texmf_mktexlsr_pre
-    fi
+    %{_sbindir}/texlive.post
 
 %postun
     if [ $1 -eq 0 ]; then
-	%_texmf_mktexlsr_post
+	%{_sbindir}/texlive.post
     fi
 
 #-----------------------------------------------------------------------
@@ -54,7 +44,6 @@ either horizontally or vertically and is fully customizable.
 %doc %{_texmfdistdir}/doc/latex/tabularcalc/tabularcalc_doc_fr.tex
 %doc %{_texmfdistdir}/doc/latex/tabularcalc/tabularcalc_doc_vn.pdf
 %doc %{_texmfdistdir}/doc/latex/tabularcalc/tabularcalc_doc_vn.tex
-%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -65,5 +54,3 @@ either horizontally or vertically and is fully customizable.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc %{buildroot}%{_texmfdistdir}
-mkdir -p %{buildroot}%{_tlpkgobjdir}
-cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
