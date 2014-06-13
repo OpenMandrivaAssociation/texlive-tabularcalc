@@ -6,7 +6,7 @@
 # catalog-version 0.2
 Name:		texlive-tabularcalc
 Version:	0.2
-Release:	6
+Release:	7
 Summary:	Calculate formulas in a tabular environment
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/tabularcalc
