@@ -1,18 +1,12 @@
-# revision 15878
-# category Package
-# catalog-ctan /macros/latex/contrib/tabularcalc
-# catalog-date 2009-04-22 00:12:47 +0200
-# catalog-license lppl
-# catalog-version 0.2
 Name:		texlive-tabularcalc
-Version:	0.2
-Release:	11
+Version:	15878
+Release:	1
 Summary:	Calculate formulas in a tabular environment
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/tabularcalc
 License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/tabularcalc.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/tabularcalc.doc.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/tabularcalc.r%{version}.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/tabularcalc.doc.r%{version}.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -27,12 +21,12 @@ formulas for each number of the list. The table may be built
 either horizontally or vertically and is fully customizable.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
@@ -47,23 +41,10 @@ either horizontally or vertically and is fully customizable.
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1
+%autosetup -p1 -c -a1
 
 %build
 
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc %{buildroot}%{_texmfdistdir}
-
-
-%changelog
-* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 0.2-2
-+ Revision: 756439
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 0.2-1
-+ Revision: 719646
-- texlive-tabularcalc
-- texlive-tabularcalc
-- texlive-tabularcalc
-
