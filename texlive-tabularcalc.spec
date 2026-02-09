@@ -1,6 +1,6 @@
 Name:		texlive-tabularcalc
-Version:	15878
-Release:	2
+Version:	77677
+Release:	1
 Summary:	Calculate formulas in a tabular environment
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/tabularcalc
